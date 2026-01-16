@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABRAXAS 2K26 | SNIT Adoor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f3ff; /* Neon Cyan */
+            --secondary: #bc13fe; /* Neon Purple */
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --text: #e0e0e0;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 2rem;
+            letter-spacing: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; text-shadow: 0 0 20px var(--primary); } 100% { opacity: 0.5; } }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+            z-index: 1000;
+        }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #fff; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #aaa; text-transform: uppercase; font-weight: 600; transition: 0.3s; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .btn-register {
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-register:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #151515 0%, #000 70%);
+            position: relative;
+            padding: 0 20px;
+        }
+        .hero h3 { letter-spacing: 8px; color: var(--secondary); margin-bottom: 10px; font-size: 1.2rem; }
+        
+        /* Glitch Title Effect */
+        .glitch-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            text-shadow: 3px 3px 0px var(--secondary), -3px -3px 0px var(--primary);
+            animation: glitch 1s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px 0px var(--secondary), -3px -3px 0px var(--primary); }
+            100% { text-shadow: -3px -3px 0px var(--secondary), 3px 3px 0px var(--primary); }
+        }
+        
+        /* Countdown */
+        .countdown { display: flex; gap: 30px; margin: 40px 0; }
+        .time-box { text-align: center; }
+        .time-val { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: #fff; font-weight: 700; }
+        .time-label { color: #888; font-size: 0.9rem; letter-spacing: 2px; }
+
+        /* --- SECTIONS --- */
+        .section { padding: 100px 10%; }
+        .section-title {
+            font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 60px;
+            text-align: center; color: #fff;
+        }
+        .section-title span { color: var(--primary); border-bottom: 3px solid var(--secondary); }
+
+        /* Grid Layouts */
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+        .card {
+            background: #111; border: 1px solid #222; padding: 30px;
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0); transform-origin: left; transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); background: #161616; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card:hover::before { transform: scaleX(1); }
+        .card h4 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin: 15px 0; color: #fff; }
+        .card p { color: #999; line-height: 1.6; font-size: 1rem; }
+        .card-icon { font-size: 2.5rem; color: var(--primary); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #020202; padding: 60px 10%; border-top: 1px solid #222;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;
+        }
+        .footer-col h5 { font-family: 'Orbitron', sans-serif; color: #fff; margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-col a { display: block; color: #666; margin-bottom: 10px; transition: 0.3s; text-decoration: none; }
+        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
+        .socials a { display: inline-block; margin-right: 15px; font-size: 1.5rem; }
+
+        /* Mobile Adjustments */
+        @media(max-width: 768px) {
+            .glitch-title { font-size: 3rem; }
+            .nav-links { display: none; }
+            .countdown { gap: 15px; }
+            .time-val { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="loader-text">INITIALIZING ABRAXAS...</div>
+    </div>
+
+    <nav>
+        <div class="logo">SNIT <span>ABRAXAS</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#events">Events</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="btn-register">Register</button>
+    </nav>
+
+    <section class="hero" id="home">
+        <h3>SNIT ADOOR PRESENTS</h3>
+        <h1 class="glitch-title">ABRAXAS 2K26</h1>
+        <p style="color:#aaa; margin-top:20px; letter-spacing: 2px;">THE FUTURE IS HERE</p>
+
+        <div class="countdown">
+            <div class="time-box"><div class="time-val" id="days">00</div><div class="time-label">DAYS</div></div>
+            <div class="time-box"><div class="time-val" id="hours">00</div><div class="time-label">HRS</div></div>
+            <div class="time-box"><div class="time-val" id="mins">00</div><div class="time-label">MIN</div></div>
+            <div class="time-box"><div class="time-val" id="secs">00</div><div class="time-label">SEC</div></div>
+        </div>
+
+        <button class="btn-register" style="font-size: 1.2rem; padding: 15px 40px;">Explore Events</button>
+    </section>
+
+    <section class="section" id="about">
+        <h2 class="section-title"><span>ABOUT</span> SNIT</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto; color: #ccc;">
+            <p>Sree Narayana Institute of Technology, Adoor, brings you the most anticipated Techno-Cultural fest of the year. ABRAXAS 2K26 is not just an event; it is a convergence of art, technology, and innovation. Join us as we redefine the boundaries of engineering.</p>
+        </div>
+    </section>
+
+    <section class="section" id="events">
+        <h2 class="section-title">FEATURED <span>EVENTS</span></h2>
+        <div class="grid-container">
+            <div class="card">
+                <i class="fas fa-robot card-icon"></i>
+                <h4>RoboWars</h4>
+                <p>The arena is set. Build your ultimate combat robot and destroy the competition in a fight to the finish.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-code card-icon"></i>
+                <h4>Hackathon</h4>
+                <p>24 Hours. Infinite Coffee. Real world problems. Can you code the future before the clock runs out?</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-gamepad card-icon"></i>
+                <h4>E-Sports</h4>
+                <p>Valorant, BGMI, and FIFA. Compete against the best gamers in the state for the championship title.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-camera card-icon"></i>
+                <h4>Shutter Up</h4>
+                <p>A photography contest capturing the essence of technology and nature. Show us your perspective.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-music card-icon"></i>
+                <h4>Battle of Bands</h4>
+                <p>Plug in and rock out. The stage belongs to those who can make the crowd roar.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-car card-icon"></i>
+                <h4>Auto Expo</h4>
+                <p>Witness the marvels of automotive engineering. Superbikes, vintage cars, and futuristic concepts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="sponsors" style="background: #080808;">
+        <h2 class="section-title">PAST <span>SPONSORS</span></h2>
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.5;">
+            <h2 style="font-family: Orbitron; color: #fff;">GOOGLE</h2>
+            <h2 style="font-family: Orbitron; color: #fff;">RED BULL</h2>
+            <h2 style="font-family: Orbitron; color: #fff;">INTEL</h2>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-col">
+            <div class="logo">ABRAXAS <span>2K26</span></div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #777;">
+                Sree Narayana Institute of Technology<br>
+                Theppupara, Adoor, Kerala
+            </p>
+        </div>
+        <div class="footer-col">
+            <h5>Quick Links</h5>
+            <a href="#">Rulebook</a>
+            <a href="#">Ambassador Program</a>
+            <a href="#">Accommodations</a>
+        </div>
+        <div class="footer-col">
+            <h5>Contact Us</h5>
+            <a href="#">techfest@snit.ac.in</a>
+            <a href="#">+91 98765 43210</a>
+            <div class="socials" style="margin-top: 20px;">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader Logic
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 500);
+            }, 1500); // Loader waits 1.5 seconds
+        }
+
+        // Countdown Timer Logic (Set to a date in 2026)
+        const targetDate = new Date("March 15, 2026 09:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown").innerHTML = "<h1>EVENT STARTED</h1>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
